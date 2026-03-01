@@ -15,17 +15,33 @@ class RootApp extends StatelessWidget {
           seedColor: Colors.blue,
         ),
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue, // forza AppBar blu
+          backgroundColor: Colors.blue,
         ),
       ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text("Gelateria"),
         ),
-        body: Column(
-          children: [const Text("Body"), Image.asset('assets/images/cheesecake.jpg')],
+        body: Builder(
+          builder: (context) {
+            return Column(
+              children: [
+                const Text("Body"),
+                Image.asset('assets/images/cheesecake.jpg'),
+                ElevatedButton(
+                  onPressed: () {
+                    SnackBar snackBar =
+                    SnackBar(content: const Text('Ti abbiamo inviato una mail'));
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(snackBar);
+                  },
+                  child: const Text("Informazioni"),
+                )
+              ],
+            );
+          },
         ),
-        ),
+      ),
     );
   }
 }
